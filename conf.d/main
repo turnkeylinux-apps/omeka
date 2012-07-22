@@ -39,6 +39,7 @@ a2enmod rewrite
 
 # start services
 /etc/init.d/mysql start
+/etc/init.d/apache2 start
 
 # setup the database
 MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
@@ -47,6 +48,17 @@ MYSQL_ADMIN="mysqladmin --user=root --password=$MYSQL_PASS"
 $MYSQL_ADMIN create $DB_NAME
 $MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
 
+# curl based install
+EMAIL=$(echo $ADMIN_MAIL | sed s/@/%40/)
+URL="http://127.0.0.1/install/"
+CURL="curl -c /tmp/cookie -b /tmp/cookie"
+
+$CURL $URL --data "username=$ADMIN_NAME&password=$ADMIN_PASS&password_confirm=$ADMIN_PASS&super_email=$EMAIL&administrator_email=$EMAIL&site_title=TurnKey+Omeka&description=&copyright=&author=&tag_delimiter=%2C&fullsize_constraint=800&thumbnail_constraint=200&square_thumbnail_constraint=200&per_page_admin=10&per_page_public=10&show_empty_elements=0&path_to_convert=%2Fusr%2Fbin&install_submit=Install"
+
+rm -rf $WEBROOT/install
+rm -f /tmp/cookie
+
 # stop services
 /etc/init.d/mysql stop
+/etc/init.d/apache2 stop
 
