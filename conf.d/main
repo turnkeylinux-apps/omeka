@@ -61,6 +61,10 @@ rm -f /tmp/cookie
 # set better looking theme
 $MYSQL_BATCH --execute "UPDATE $DB_NAME.options SET value=\"rhythm\" WHERE name=\"public_theme\";"
 
+# tweak footer
+CONF=$WEBROOT/application/views/scripts/common/footer.php
+sed -i "s|</body>|    <div id='turnkey-credit' style='text-align:center;font-size:11px;'><a href='http://www.turnkeylinux.org/omeka'>Omeka Appliance</a> - Powered by <a href='http://www.turnkeylinux.org'>TurnKey Linux</a></div>\n</body>|" $CONF
+
 # stop services
 /etc/init.d/mysql stop
 /etc/init.d/apache2 stop
