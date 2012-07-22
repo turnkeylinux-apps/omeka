@@ -58,6 +58,9 @@ $CURL $URL --data "username=$ADMIN_NAME&password=$ADMIN_PASS&password_confirm=$A
 rm -rf $WEBROOT/install
 rm -f /tmp/cookie
 
+# set better looking theme
+$MYSQL_BATCH --execute "UPDATE $DB_NAME.options SET value=\"rhythm\" WHERE name=\"public_theme\";"
+
 # stop services
 /etc/init.d/mysql stop
 /etc/init.d/apache2 stop
