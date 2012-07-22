@@ -11,3 +11,10 @@ ADMIN_MAIL=admin@example.com
 SRC=/usr/local/src
 WEBROOT=/var/www/omeka
 
+# unpack and set permissions
+unzip $SRC/omeka-*.zip -d $(dirname $WEBROOT)
+rm $SRC/omeka-*.zip
+mv $(dirname $WEBROOT)/omeka-* $WEBROOT
+chown -R root:root $WEBROOT
+chown -R www-data:www-data $WEBROOT/archive
+
