@@ -18,3 +18,17 @@ mv $(dirname $WEBROOT)/omeka-* $WEBROOT
 chown -R root:root $WEBROOT
 chown -R www-data:www-data $WEBROOT/archive
 
+# configure db settings
+cat >$WEBROOT/db.ini<<EOF
+[database]
+host     = "localhost"
+username = "$DB_USER"
+password = "$DB_PASS"
+dbname   = "$DB_NAME"
+prefix   = ""
+charset  = "utf8"
+;port     = ""
+EOF
+chown www-data:www-data $WEBROOT/db.ini
+chmod 640 $WEBROOT/db.ini
+
