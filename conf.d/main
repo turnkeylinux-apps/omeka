@@ -16,7 +16,7 @@ unzip $SRC/omeka-*.zip -d $(dirname $WEBROOT)
 rm $SRC/omeka-*.zip
 mv $(dirname $WEBROOT)/omeka-* $WEBROOT
 chown -R root:root $WEBROOT
-chown -R www-data:www-data $WEBROOT/archive
+chown -R www-data:www-data $WEBROOT/files
 
 # configure db settings
 cat >$WEBROOT/db.ini<<EOF
@@ -58,12 +58,10 @@ $CURL $URL --data "username=$ADMIN_NAME&password=$ADMIN_PASS&password_confirm=$A
 rm -rf $WEBROOT/install
 rm -f /tmp/cookie
 
-# set better looking theme
-$MYSQL_BATCH --execute "UPDATE $DB_NAME.options SET value=\"rhythm\" WHERE name=\"public_theme\";"
-
 # tweak footer
-CONF=$WEBROOT/application/views/scripts/common/footer.php
-sed -i "s|</body>|    <div id='turnkey-credit' style='text-align:center;font-size:11px;'><a href='http://www.turnkeylinux.org/omeka'>Omeka Appliance</a> - Powered by <a href='http://www.turnkeylinux.org'>TurnKey Linux</a></div>\n</body>|" $CONF
+for footer in $WEBROOT/themes/*/common/footer.php; do
+    sed -i "s|</body>|    <div id='turnkey-credit' style='text-align:center;font-size:11px;'><a href='http://www.turnkeylinux.org/omeka'>Omeka Appliance</a> - Powered by <a href='http://www.turnkeylinux.org'>TurnKey Linux</a></div>\n</body>|" $footer
+done
 
 # stop services
 /etc/init.d/mysql stop
