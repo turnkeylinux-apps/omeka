@@ -1,3 +1,16 @@
+turnkey-omeka-14.0 (1) turnkey; urgency=low
+
+  * Upgraded to latest major version of omeka.
+
+  * Upstream source component versions:
+
+    omeka           2.3
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Fri, 19 Jun 2015 00:44:00 +1000
+
 turnkey-omeka-13.0 (1) turnkey; urgency=low
 
   * PHPMyAdmin:
