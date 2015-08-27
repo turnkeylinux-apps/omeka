@@ -9,6 +9,7 @@ Option:
 
 import sys
 import getopt
+import inithooks_cache
 import hashlib
 import random
 import string
@@ -54,6 +55,8 @@ def main():
             "Omeka Email",
             "Enter email address for the Omeka 'admin' account.",
             "admin@example.com")
+
+    inithooks_cache.write('APP_EMAIL', email)
 
     salt = ''.join((random.choice(string.letters+string.digits) for x in range(16)))
     hash = hashlib.sha1(salt + password).hexdigest()
