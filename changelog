@@ -6,6 +6,10 @@ turnkey-omeka-14.0 (1) turnkey; urgency=low
 
     omeka           2.3
 
+  * Replaced PHPMyAdmin with Adminer
+
+  * Hardened default SSL settings
+
   * Note: Please refer to turnkey-core's changelog for changes common to all
     appliances. Here we only describe changes specific to this appliance.
 
