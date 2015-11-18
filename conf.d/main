@@ -60,7 +60,7 @@ rm -f /tmp/cookie
 
 # tweak footer
 for footer in $WEBROOT/themes/*/common/footer.php; do
-    sed -i "s|</body>|    <div id='turnkey-credit' style='text-align:center;font-size:11px;'><a href='http://www.turnkeylinux.org/omeka'>Omeka Appliance</a> - Powered by <a href='http://www.turnkeylinux.org'>TurnKey Linux</a></div>\n</body>|" $footer
+    sed -i "s|</body>|    <div id='turnkey-credit' style='text-align:center;font-size:11px;'><a href='https://www.turnkeylinux.org/omeka'>Omeka Appliance</a> - Powered by <a href='https://www.turnkeylinux.org'>TurnKey Linux</a></div>\n</body>|" $footer
 done
 
 # stop services
