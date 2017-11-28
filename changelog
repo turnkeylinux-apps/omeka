@@ -1,3 +1,16 @@
+turnkey-omeka-15.0 (1) turnkey; urgency=low
+
+  * Upgraded to the latest upstream source version
+
+  * Install Adminer directly from stretch/main repo
+
+  * Replace MySQL with MariaDB
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specdific to this appliance.
+
+ -- Vlad Kuzmenko <vlad.work.here@gmail.com>  Tue, 28 Nov 2017 20:45:42 +0200
+
 turnkey-omeka-14.2 (1) turnkey; urgency=low
 
   * Update version to current stable (2.5)
