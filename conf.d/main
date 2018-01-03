@@ -38,8 +38,8 @@ a2ensite omeka
 a2enmod rewrite
 
 # start services
-/etc/init.d/mysql start
-/etc/init.d/apache2 start
+service mysql start
+service apache2 start
 
 # setup the database
 MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
@@ -64,6 +64,6 @@ for footer in $WEBROOT/themes/*/common/footer.php; do
 done
 
 # stop services
-/etc/init.d/mysql stop
-/etc/init.d/apache2 stop
+service mysql stop
+service apache2 stop
 
