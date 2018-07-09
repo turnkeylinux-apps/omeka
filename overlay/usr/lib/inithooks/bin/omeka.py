@@ -64,7 +64,7 @@ def main():
     m = MySQL()
     m.execute('UPDATE omeka.users SET password=\"%s\", salt=\"%s\" WHERE username=\"admin\";' % (hash, salt))
 
-    m.execute('UPDATE omeka.entities SET email=\"%s\" WHERE id=1' % email)
+    m.execute('UPDATE omeka.users SET email=\"%s\" WHERE username=\"admin\";' % email)
     m.execute('UPDATE omeka.options SET value=\"%s\" WHERE name=\"administrator_email\"' % email)
 
 if __name__ == "__main__":
