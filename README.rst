@@ -14,6 +14,10 @@ and on top of that:
    
    - Installed from upstream source code to /var/www/omeka
 
+     **Security note**: Updates to Omeka may require supervision so
+     they **ARE NOT** configured to install automatically. See `Omeka
+     documentation`_ for upgrading.
+
 - SSL support out of the box.
 - `Adminer`_ administration frontend for MySQL (listening on port)
   12322 - uses SSL).
@@ -29,6 +33,7 @@ Credentials *(passwords set at first boot)*
 -  Omeka: username **admin**
 
 
-.. _Omeka: http://omeka.org/
+.. _Omeka: https://omeka.org/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
-.. _Adminer: http://www.adminer.org/
+.. _Omeka documentation: https://omeka.org/classic/docs/Installation/Upgrading/
+.. _Adminer: https://www.adminer.org/
