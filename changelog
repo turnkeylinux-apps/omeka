@@ -3,7 +3,7 @@ turnkey-omeka-15.0 (1) turnkey; urgency=low
   * Upgraded to the latest upstream source version (2.6.1)
 
   * Download source from GitHub (conf.d/download)
-    [ Vlad Kuzmenko <vlad.work.here@gmail.com> ]
+    [ Vlad Kuzmenko <vlad@turnkeylinux.org> ]
 
   * Install Adminer directly from stretch/main repo
 
