@@ -5,5 +5,5 @@ dl() {
     cd $2; curl -L -f -O $PROXY $1; cd -
 }
 
-VERSION=2.6.1
+VERSION=2.7.1
 dl https://github.com/omeka/Omeka/releases/download/v$VERSION/omeka-$VERSION.zip /usr/local/src
