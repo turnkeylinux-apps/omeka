@@ -34,6 +34,7 @@ chmod 640 $WEBROOT/db.ini
 
 # configure apache
 a2dissite 000-default
+a2enmod headers
 a2ensite omeka
 a2enmod rewrite
 
