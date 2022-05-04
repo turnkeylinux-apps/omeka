@@ -1,3 +1,13 @@
+turnkey-omeka-17.0 (1) turnkey; urgency=low
+
+  * Upgraded to the latest upstream source version - 3.0.1.
+
+  * Note: Please refer to turnkey-core's 17.0 changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Zhenya Hvorostian <zhenya@turnkeylinux.org>  Sat, 12 Feb 2022 00:23:40 +0300
+
+
 turnkey-omeka-16.1 (1) turnkey; urgency=low
 
   * Rebuild on latest debian buster.
