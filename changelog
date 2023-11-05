@@ -1,5 +1,9 @@
 turnkey-omeka-18.0 (1) turnkey; urgency=low
 
+  * Ensure hashfile includes URL to public key - closes #1864.
+
+  * Include webmin-logviewer module by default - closes #1866.
+
   * Install latest upstream version of Omeka (Classic): 3.1.2.
 
   * Special thanks to UncleDan (Daniele Lolli - https://github.com/UncleDan)
