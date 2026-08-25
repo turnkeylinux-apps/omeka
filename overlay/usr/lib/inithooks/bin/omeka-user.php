@@ -23,7 +23,7 @@ if (!($user instanceof User)) {
 
 $user->setPassword($argv[2]);
 $user->email = $argv[3];
-if (!$user->save(false)) {
+if ($user->getDb()->insert('User', $user->toArray()) !== (int) $user->id) {
     fwrite(STDERR, "Omeka user update failed\n");
     exit(1);
 }
