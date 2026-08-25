@@ -10,12 +10,9 @@ Option:
 import sys
 import getopt
 from libinithooks import inithooks_cache
-import hashlib
-import random
-import string
+import subprocess
 
 from libinithooks.dialog_wrapper import Dialog
-from mysqlconf import MySQL
 
 def usage(s=None):
     if s:
@@ -58,15 +55,10 @@ def main():
 
     inithooks_cache.write('APP_EMAIL', email)
 
-    salt = ''.join(random.choice(string.ascii_letters+string.digits) for x in range(16))
-    hash = hashlib.sha1((salt + password).encode('utf8')).hexdigest()
-
-    m = MySQL()
-    m.execute('UPDATE omeka.users SET password=%s, salt=%s WHERE username=\"admin\";', (hash, salt))
-
-    m.execute('UPDATE omeka.users SET email=%s WHERE username=\"admin\";', (email,))
-    m.execute('UPDATE omeka.options SET value=%s WHERE name=\"administrator_email\"', (email,))
+    subprocess.run(
+        ['/usr/lib/inithooks/bin/omeka-user.php', 'admin', password, email],
+        check=True,
+    )
 
 if __name__ == "__main__":
     main()
-
