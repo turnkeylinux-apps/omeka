@@ -1,9 +1,15 @@
 #!/bin/bash -ex
 
-dl() {
-    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-    cd $2; curl -L -f -O $PROXY $1; cd -
-}
+VERSION=3.2.1
+URL="https://github.com/omeka/Omeka/releases/download/v$VERSION/omeka-$VERSION.zip"
+SHA256=2cb4d65511321cc5c009cb61516d9ed97378a800fc4a26eb46450c3c4ca230c2
+DEST="/usr/local/src/omeka-$VERSION.zip"
 
-VERSION=3.1.1
-dl https://github.com/omeka/Omeka/releases/download/v$VERSION/omeka-$VERSION.zip /usr/local/src
+if [ -n "$FAB_HTTP_PROXY" ]; then
+    curl --fail --location --show-error --proxy "$FAB_HTTP_PROXY" \
+        --output "$DEST" "$URL"
+else
+    curl --fail --location --show-error --output "$DEST" "$URL"
+fi
+
+echo "$SHA256  $DEST" | sha256sum --check --strict -

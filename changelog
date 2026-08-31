@@ -1,3 +1,16 @@
+turnkey-omeka-19.0 (1) turnkey; urgency=low
+
+  * Install Omeka Classic 3.2.1 from the official upstream release archive
+    and verify its published SHA-256 digest during the build.
+
+  * Update database bootstrap and administrator password handling for Debian
+    13 Trixie, MariaDB 11.8 and PHP 8.4.
+
+  * Verify administrator authentication, collection item creation, restart
+    persistence, management services and the supervised upstream update path.
+
+ -- TurnKey GNU/Linux Team <admin@turnkeylinux.org>  Tue, 25 Aug 2026 00:00:00 +0000
+
 turnkey-omeka-18.0 (1) turnkey; urgency=low
 
   * Ensure hashfile includes URL to public key - closes #1864.

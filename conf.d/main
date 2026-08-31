@@ -26,7 +26,7 @@ username = "$DB_USER"
 password = "$DB_PASS"
 dbname   = "$DB_NAME"
 prefix   = ""
-charset  = "utf8"
+charset  = "utf8mb4"
 ;port     = ""
 EOF
 chown www-data:www-data $WEBROOT/db.ini
@@ -39,20 +39,21 @@ a2ensite omeka
 a2enmod rewrite
 
 # start services
-service mysql start
+service mariadb start
 service apache2 start
 
 # setup the database
 MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
-MYSQL_ADMIN="mysqladmin --user=root --password=$MYSQL_PASS"
-
-$MYSQL_ADMIN create $DB_NAME
-$MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS';"
+$MYSQL_BATCH --execute "
+CREATE DATABASE $DB_NAME CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
+FLUSH PRIVILEGES;"
 
 # curl based install
 EMAIL=$(echo $ADMIN_MAIL | sed s/@/%40/)
 URL="http://127.0.0.1/install/"
-CURL="curl -c /tmp/cookie -b /tmp/cookie"
+CURL="curl --fail --silent --show-error -c /tmp/cookie -b /tmp/cookie"
 
 $CURL $URL --data "username=$ADMIN_NAME&password=$ADMIN_PASS&password_confirm=$ADMIN_PASS&super_email=$EMAIL&administrator_email=$EMAIL&site_title=TurnKey+Omeka&description=&copyright=&author=&tag_delimiter=%2C&fullsize_constraint=800&thumbnail_constraint=200&square_thumbnail_constraint=200&per_page_admin=10&per_page_public=10&show_empty_elements=0&path_to_convert=%2Fusr%2Fbin&install_submit=Install"
 
@@ -65,6 +66,5 @@ for footer in $WEBROOT/themes/*/common/footer.php; do
 done
 
 # stop services
-service mysql stop
+service mariadb stop
 service apache2 stop
-
